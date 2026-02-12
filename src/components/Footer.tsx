@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
 
 const Footer = () => (
   <footer className="section-dark border-t border-white/10 py-16">
@@ -24,6 +24,14 @@ const Footer = () => (
           <div className="space-y-2">
             <Link to="/" className="block text-sm text-white/40 hover:text-white transition-colors">Home</Link>
             <Link to="/services" className="block text-sm text-white/40 hover:text-white transition-colors">Services</Link>
+            <a
+              href="https://linkedin.com/company/triveda-technologies"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
+            >
+              <Linkedin className="w-4 h-4" /> LinkedIn
+            </a>
           </div>
         </div>
 
@@ -36,6 +44,12 @@ const Footer = () => (
             <a href="mailto:sales@trivedatechnologies.in" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
               <Mail className="w-4 h-4" /> sales@trivedatechnologies.in
             </a>
+            <div className="flex items-center gap-2 text-sm text-white/40">
+              <Phone className="w-4 h-4" /> +91 XXXXX XXXXX
+            </div>
+            <div className="flex items-start gap-2 text-sm text-white/40">
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0" /> Company address placeholder
+            </div>
           </div>
         </div>
       </div>
