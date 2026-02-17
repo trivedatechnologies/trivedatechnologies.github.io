@@ -27,7 +27,8 @@ const Footer = () => (
             
             <div className="flex items-center gap-2 text-sm text-white/20 opacity-50 cursor-not-allowed">
               <Linkedin className="w-4 h-4" /> LinkedIn
-            <div> 
+            </div>
+            
           </div>
         </div>
 
