@@ -24,14 +24,10 @@ const Footer = () => (
           <div className="space-y-2">
             <Link to="/" className="block text-sm text-white/40 hover:text-white transition-colors">Home</Link>
             <Link to="/services" className="block text-sm text-white/40 hover:text-white transition-colors">Services</Link>
-            <a
-              href="https://linkedin.com/company/triveda-technologies"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
-            >
+            
+            <div className="flex items-center gap-2 text-sm text-white/20 opacity-50 cursor-not-allowed">
               <Linkedin className="w-4 h-4" /> LinkedIn
-            </a>
+            <div> 
           </div>
         </div>
 
