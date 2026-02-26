@@ -1,17 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { serviceCategories } from "@/data/services";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ServicesOverview = () => {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+  const location = useLocation();
+  const ref = useScrollReveal();
+
+  // Auto-expand first service if navigated with hash #services-expand
+  useEffect(() => {
+    if (location.hash === "#services-expand") {
+      setExpandedIdx(0);
+      setTimeout(() => {
+        document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location.hash]);
 
   const toggle = (idx: number) =>
     setExpandedIdx((prev) => (prev === idx ? null : idx));
 
   return (
     <section id="services" className="py-24 md:py-32 section-dark">
-      <div className="container mx-auto px-4 md:px-6">
+      <div ref={ref} className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
             What We Do
@@ -29,14 +42,18 @@ const ServicesOverview = () => {
             <div key={s.title}>
               <button
                 onClick={() => toggle(idx)}
-                className="w-full text-left group p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+                className={`w-full text-left group p-8 rounded-2xl border backdrop-blur-sm hover:-translate-y-1 transition-all duration-300 ${
+                  expandedIdx === idx
+                    ? "border-primary/30 bg-white/10 shadow-lg shadow-primary/10"
+                    : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20"
+                }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-5">
                     <s.icon className="w-5 h-5 text-white" />
                   </div>
                   {expandedIdx === idx ? (
-                    <ChevronUp className="w-5 h-5 text-white/40" />
+                    <ChevronUp className="w-5 h-5 text-primary" />
                   ) : (
                     <ChevronDown className="w-5 h-5 text-white/40" />
                   )}

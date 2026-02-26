@@ -1,12 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const sections = [
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "advantages", label: "Advantages" },
+  { id: "industries", label: "Industries" },
+  { id: "contact", label: "Contact" },
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  // Track active section
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+      let current = "";
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top <= 150) current = s.id;
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
@@ -19,7 +46,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-lg shadow-sm" : "bg-background/60 backdrop-blur-md"} border-b border-border/50`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2">
@@ -32,17 +59,21 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollToSection("about")} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              About
-            </button>
-            <Link to="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Services
-            </Link>
-            <button onClick={() => scrollToSection("contact")} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </button>
-            <Button onClick={() => scrollToSection("contact")} size="sm" className="gradient-bg border-0 text-white hover:opacity-90">
+          <div className="hidden md:flex items-center gap-1">
+            {sections.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => scrollToSection(s.id)}
+                className={`text-sm font-medium px-3 py-2 rounded-lg transition-colors ${
+                  activeSection === s.id
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+            <Button onClick={() => scrollToSection("contact")} size="sm" className="gradient-bg border-0 text-white hover:opacity-90 ml-2">
               Get in Touch
             </Button>
           </div>
@@ -55,17 +86,21 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-3 border-t border-border/50 pt-4">
-            <button onClick={() => scrollToSection("about")} className="block w-full text-left text-sm font-medium text-muted-foreground hover:text-foreground">
-              About
-            </button>
-            <Link to="/services" onClick={() => setIsOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">
-              Services
-            </Link>
-            <button onClick={() => scrollToSection("contact")} className="block w-full text-left text-sm font-medium text-muted-foreground hover:text-foreground">
-              Contact
-            </button>
-            <Button onClick={() => scrollToSection("contact")} size="sm" className="gradient-bg border-0 text-white w-full">
+          <div className="md:hidden pb-4 space-y-1 border-t border-border/50 pt-4 animate-fade-in">
+            {sections.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => scrollToSection(s.id)}
+                className={`block w-full text-left text-sm font-medium px-3 py-2 rounded-lg ${
+                  activeSection === s.id
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+            <Button onClick={() => scrollToSection("contact")} size="sm" className="gradient-bg border-0 text-white w-full mt-2">
               Get in Touch
             </Button>
           </div>

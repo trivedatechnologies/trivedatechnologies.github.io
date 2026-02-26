@@ -1,13 +1,29 @@
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToServices = () => {
+    if (location.pathname === "/") {
+      const el = document.getElementById("services");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        // Trigger expand via hash
+        window.history.replaceState(null, "", "/#services-expand");
+        window.dispatchEvent(new HashChangeEvent("hashchange"));
+      }
+    } else {
+      navigate("/#services-expand");
+    }
   };
 
   // Animated particle network background
@@ -51,7 +67,6 @@ const Hero = () => {
         if (p.y < 0 || p.y > h) p.vy *= -1;
       });
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -68,7 +83,6 @@ const Hero = () => {
         }
       }
 
-      // Draw particles
       particles.forEach((p) => {
         ctx.fillStyle = "rgba(99, 102, 241, 0.4)";
         ctx.beginPath();
@@ -90,17 +104,14 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-dark">
-      {/* Animated particle canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
-      {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <span className="font-display font-black text-[12vw] md:text-[10vw] tracking-widest text-white/[0.03] uppercase">
           TRIVEDA
         </span>
       </div>
 
-      {/* Gradient orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-[120px]" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-[120px]" />
 
@@ -118,16 +129,12 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Enterprise Software. AI Solutions. Cloud Systems. Secure Scalability.
-            <br className="hidden sm:block" />
-            A premium consulting partner for forward-thinking organizations.
+            Enterprise Software · AI Solutions · Cloud Systems · Secure Scalability
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="gradient-bg border-0 text-white hover:opacity-90 px-8 h-12 text-base">
-              <Link to="/services">
-                Explore Services <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+            <Button onClick={scrollToServices} size="lg" className="gradient-bg border-0 text-white hover:opacity-90 px-8 h-12 text-base">
+              Explore Services <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
             <Button
               variant="outline"

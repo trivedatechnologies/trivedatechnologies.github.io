@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ContactForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const ref = useScrollReveal();
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -81,7 +83,7 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="py-24 md:py-32">
-      <div className="container mx-auto px-4 md:px-6">
+      <div ref={ref} className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
