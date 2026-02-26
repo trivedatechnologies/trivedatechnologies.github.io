@@ -1,151 +1,3 @@
-// import { useState } from "react";
-// import { Send, Loader2 } from "lucide-react";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Textarea } from "@/components/ui/textarea";
-// import { useToast } from "@/hooks/use-toast";
-
-// const ContactForm = () => {
-//   const { toast } = useToast();
-//   const [loading, setLoading] = useState(false);
-//   const [form, setForm] = useState({ name: "", mobile: "", email: "", message: "" });
-//   const [errors, setErrors] = useState<Record<string, string>>({});
-
-//   const validate = () => {
-//     const e: Record<string, string> = {};
-//     if (!form.mobile.trim()) e.mobile = "Mobile number is required.";
-//     if (!form.email.trim()) e.email = "Email is required.";
-//     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address.";
-//     if (!form.message.trim()) e.message = "Message is required.";
-//     setErrors(e);
-//     return Object.keys(e).length === 0;
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     if (!validate()) return;
-
-//     setLoading(true);
-//     try {
-//       // EmailJS integration — requires user to set up their account
-//       const emailjs = await import("@emailjs/browser");
-
-//       const templateParams = {
-//         from_name: form.name || "Not provided",
-//         mobile: form.mobile,
-//         email: form.email,
-//         message: form.message,
-//         timestamp: new Date().toLocaleString(),
-//       };
-
-//       // Send to both email addresses using EmailJS
-//       // Users need to replace these IDs with their own from emailjs.com
-//       const SERVICE_ID = "YOUR_SERVICE_ID";
-//       const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-//       const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-
-//       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-
-//       toast({
-//         title: "Message Sent!",
-//         description: "Thank you for reaching out. We'll get back to you shortly.",
-//       });
-//       setForm({ name: "", mobile: "", email: "", message: "" });
-//     } catch {
-//       toast({
-//         title: "Message Sent!",
-//         description: "Thank you for your interest. We'll be in touch soon.",
-//       });
-//       setForm({ name: "", mobile: "", email: "", message: "" });
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleChange = (field: string, value: string) => {
-//     setForm((prev) => ({ ...prev, [field]: value }));
-//     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
-//   };
-
-//   return (
-//     <section id="contact" className="py-24 md:py-32">
-//       <div className="container mx-auto px-4 md:px-6">
-//         <div className="max-w-2xl mx-auto">
-//           <div className="text-center mb-12">
-//             <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-3 block">
-//               Get in Touch
-//             </span>
-//             <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-//               Let's Build Something <span className="gradient-text">Extraordinary</span>
-//             </h2>
-//             <p className="text-muted-foreground">
-//               Ready to transform your business? Reach out and let's discuss how we can help.
-//             </p>
-//           </div>
-
-//           <form onSubmit={handleSubmit} className="space-y-5 p-8 rounded-2xl border border-border/50 bg-card shadow-sm">
-//             <div>
-//               <label className="text-sm font-medium mb-1.5 block">
-//                 Name <span className="text-muted-foreground">(optional)</span>
-//               </label>
-//               <Input
-//                 placeholder="Your full name"
-//                 value={form.name}
-//                 onChange={(e) => handleChange("name", e.target.value)}
-//               />
-//             </div>
-
-//             <div>
-//               <label className="text-sm font-medium mb-1.5 block">
-//                 Mobile Number <span className="text-destructive">*</span>
-//               </label>
-//               <Input
-//                 placeholder="+91 98765 43210"
-//                 value={form.mobile}
-//                 onChange={(e) => handleChange("mobile", e.target.value)}
-//               />
-//               {errors.mobile && <p className="text-sm text-destructive mt-1">{errors.mobile}</p>}
-//             </div>
-
-//             <div>
-//               <label className="text-sm font-medium mb-1.5 block">
-//                 Email <span className="text-destructive">*</span>
-//               </label>
-//               <Input
-//                 type="email"
-//                 placeholder="you@company.com"
-//                 value={form.email}
-//                 onChange={(e) => handleChange("email", e.target.value)}
-//               />
-//               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
-//             </div>
-
-//             <div>
-//               <label className="text-sm font-medium mb-1.5 block">
-//                 Message <span className="text-destructive">*</span>
-//               </label>
-//               <Textarea
-//                 placeholder="Tell us about your project or requirements..."
-//                 rows={5}
-//                 value={form.message}
-//                 onChange={(e) => handleChange("message", e.target.value)}
-//               />
-//               {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
-//             </div>
-
-//             <Button type="submit" disabled={loading} className="w-full gradient-bg border-0 text-white hover:opacity-90 h-12 text-base">
-//               {loading ? (
-//                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
-//               ) : (
-//                 <Send className="w-4 h-4 mr-2" />
-//               )}
-//               {loading ? "Sending..." : "Send Message"}
-//             </Button>
-//           </form>
-//         </div>
-//       </div>
-//     </section>
-
 import { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -157,7 +9,8 @@ const ContactForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     mobile: "",
     email: "",
     message: "",
@@ -166,10 +19,12 @@ const ContactForm = () => {
 
   const validate = () => {
     const e: Record<string, string> = {};
+    if (!form.firstName.trim()) e.firstName = "First name is required.";
+    if (!form.lastName.trim()) e.lastName = "Last name is required.";
     if (!form.mobile.trim()) e.mobile = "Mobile number is required.";
+    else if (!/^\+?[\d\s-]{7,15}$/.test(form.mobile.trim())) e.mobile = "Enter a valid mobile number.";
     if (!form.email.trim()) e.email = "Email is required.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      e.email = "Enter a valid email address.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address.";
     if (!form.message.trim()) e.message = "Message is required.";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -180,19 +35,15 @@ const ContactForm = () => {
     if (!validate()) return;
 
     setLoading(true);
-
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: "5e1db0ec-496b-4db2-bd57-6ef11cc7b16c",
           subject: "New Website Inquiry - Triveda Technologies",
           from_name: "Triveda Technologies Website",
-          name: form.name || "Not provided",
+          name: `${form.firstName} ${form.lastName}`,
           mobile: form.mobile,
           email: form.email,
           message: form.message,
@@ -204,19 +55,16 @@ const ContactForm = () => {
       if (result.success) {
         toast({
           title: "Message Sent Successfully!",
-          description:
-            "Thank you for contacting Triveda Technologies. Our team will contact you shortly.",
+          description: "Thank you for contacting Triveda Technologies. Our team will contact you shortly.",
         });
-
-        setForm({ name: "", mobile: "", email: "", message: "" });
+        setForm({ firstName: "", lastName: "", mobile: "", email: "", message: "" });
       } else {
         throw new Error("Submission failed");
       }
     } catch {
       toast({
         title: "Submission Failed",
-        description:
-          "Something went wrong while sending your request. Please try again.",
+        description: "Something went wrong. Please try again or email us directly.",
         variant: "destructive",
       });
     } finally {
@@ -226,9 +74,10 @@ const ContactForm = () => {
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
-    if (errors[field])
-      setErrors((prev) => ({ ...prev, [field]: "" }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
+
+  const fieldClass = "text-sm font-medium mb-1.5 block";
 
   return (
     <section id="contact" className="py-24 md:py-32">
@@ -239,103 +88,57 @@ const ContactForm = () => {
               Get in Touch
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Let's Build Something{" "}
-              <span className="gradient-text">Extraordinary</span>
+              Let's Build Something <span className="gradient-text">Extraordinary</span>
             </h2>
             <p className="text-muted-foreground">
-              For direct inquiries, you may also email us at{" "}
-              <strong>sales@trivedatechnologies.in</strong>
+              Ready to transform your business? Reach out at{" "}
+              <a href="mailto:info@trivedatechnologies.com" className="text-primary font-semibold hover:underline">
+                info@trivedatechnologies.com
+              </a>{" "}
+              or call{" "}
+              <a href="tel:+919973243422" className="text-primary font-semibold hover:underline">
+                +91 9973243422
+              </a>
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5 p-8 rounded-2xl border border-border/50 bg-card shadow-sm"
-          >
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">
-                Name <span className="text-muted-foreground">(optional)</span>
-              </label>
-              <Input
-                placeholder="Your full name"
-                value={form.name}
-                onChange={(e) =>
-                  handleChange("name", e.target.value)
-                }
-              />
+          <form onSubmit={handleSubmit} className="space-y-5 p-8 rounded-2xl border border-border/50 bg-card shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className={fieldClass}>First Name <span className="text-destructive">*</span></label>
+                <Input placeholder="First name" value={form.firstName} onChange={(e) => handleChange("firstName", e.target.value)} />
+                {errors.firstName && <p className="text-sm text-destructive mt-1">{errors.firstName}</p>}
+              </div>
+              <div>
+                <label className={fieldClass}>Last Name <span className="text-destructive">*</span></label>
+                <Input placeholder="Last name" value={form.lastName} onChange={(e) => handleChange("lastName", e.target.value)} />
+                {errors.lastName && <p className="text-sm text-destructive mt-1">{errors.lastName}</p>}
+              </div>
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-1.5 block">
-                Mobile Number <span className="text-destructive">*</span>
-              </label>
-              <Input
-                placeholder="+91 98765 43210"
-                value={form.mobile}
-                onChange={(e) =>
-                  handleChange("mobile", e.target.value)
-                }
-              />
-              {errors.mobile && (
-                <p className="text-sm text-destructive mt-1">
-                  {errors.mobile}
-                </p>
-              )}
+              <label className={fieldClass}>Mobile Number <span className="text-destructive">*</span></label>
+              <Input placeholder="+91 99732 43422" value={form.mobile} onChange={(e) => handleChange("mobile", e.target.value)} />
+              {errors.mobile && <p className="text-sm text-destructive mt-1">{errors.mobile}</p>}
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-1.5 block">
-                Email <span className="text-destructive">*</span>
-              </label>
-              <Input
-                type="email"
-                placeholder="sales@trivedatechnologies.in"
-                value={form.email}
-                onChange={(e) =>
-                  handleChange("email", e.target.value)
-                }
-              />
-              {errors.email && (
-                <p className="text-sm text-destructive mt-1">
-                  {errors.email}
-                </p>
-              )}
+              <label className={fieldClass}>Email <span className="text-destructive">*</span></label>
+              <Input type="email" placeholder="you@company.com" value={form.email} onChange={(e) => handleChange("email", e.target.value)} />
+              {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-1.5 block">
-                Message <span className="text-destructive">*</span>
-              </label>
-              <Textarea
-                placeholder="Tell us about your project or requirements..."
-                rows={5}
-                value={form.message}
-                onChange={(e) =>
-                  handleChange("message", e.target.value)
-                }
-              />
-              {errors.message && (
-                <p className="text-sm text-destructive mt-1">
-                  {errors.message}
-                </p>
-              )}
+              <label className={fieldClass}>Comment / Requirement <span className="text-destructive">*</span></label>
+              <Textarea placeholder="Tell us about your project or requirements..." rows={5} value={form.message} onChange={(e) => handleChange("message", e.target.value)} />
+              {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
             </div>
 
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full gradient-bg border-0 text-white hover:opacity-90 h-12 text-base"
-            >
+            <Button type="submit" disabled={loading} className="w-full gradient-bg border-0 text-white hover:opacity-90 h-12 text-base">
               {loading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                  Sending...
-                </>
+                <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Sending...</>
               ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </>
+                <><Send className="w-4 h-4 mr-2" /> Send Message</>
               )}
             </Button>
           </form>
@@ -346,8 +149,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-//   );
-// };
-
-// export default ContactForm;
