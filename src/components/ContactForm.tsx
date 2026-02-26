@@ -94,8 +94,8 @@ const ContactForm = () => {
             </h2>
             <p className="text-muted-foreground">
               Ready to transform your business? Reach out at{" "}
-              <a href="mailto:info@trivedatechnologies.com" className="text-primary font-semibold hover:underline">
-                info@trivedatechnologies.com
+              <a href="mailto:sales@trivedatechnologies.in" className="text-primary font-semibold hover:underline">
+                sales@trivedatechnologies.in
               </a>{" "}
               or call{" "}
               <a href="tel:+919973243422" className="text-primary font-semibold hover:underline">
