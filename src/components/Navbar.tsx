@@ -1,7 +1,9 @@
+// import logo from "@/assets/triveda-logo.jpg";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "../assets/triveda-logo.jpg";
 
 const sections = [
   { id: "about", label: "About" },
@@ -71,7 +73,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img
-                src="https://preview--trivedatech.lovable.app/assets/triveda-logo-BnyGbIwr.jpg"
+                src={logo}
                 alt="TriVeda Technologies Logo"
                 className="h-12 md:h-14 w-auto object-contain"
               />
