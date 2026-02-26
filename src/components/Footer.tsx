@@ -33,8 +33,8 @@ const Footer = () => (
         <div>
           <h4 className="font-display font-semibold text-white mb-4">Contact</h4>
           <div className="space-y-3">
-            <a href="mailto:info@trivedatechnologies.com" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
-              <Mail className="w-4 h-4" /> info@trivedatechnologies.com
+            <a href="mailto:sales@trivedatechnologies.in" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
+              <Mail className="w-4 h-4" /> sales@trivedatechnologies.in
             </a>
             <a href="tel:+919973243422" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
               <Phone className="w-4 h-4" /> +91 9973243422
