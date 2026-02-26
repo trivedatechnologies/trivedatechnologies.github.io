@@ -45,18 +45,38 @@ const Navbar = () => {
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-lg shadow-sm" : "bg-background/60 backdrop-blur-md"} border-b border-border/50`}>
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center">
-              <span className="text-white font-display font-bold text-lg">T</span>
-            </div>
-            <span className="font-display font-bold text-lg md:text-xl tracking-tight">
-              TRIVEDA<span className="gradient-text ml-1">TECHNOLOGIES</span>
-            </span>
-          </Link>
+ // return (
+ //    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-lg shadow-sm" : "bg-background/60 backdrop-blur-md"} border-b border-border/50`}>
+ //      <div className="container mx-auto px-4 md:px-6">
+ //        <div className="flex items-center justify-between h-16 md:h-20">
+ //          <Link to="/" className="flex items-center gap-2">
+ //            <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center">
+ //              <span className="text-white font-display font-bold text-lg">T</span>
+ //            </div>
+ //            <span className="font-display font-bold text-lg md:text-xl tracking-tight">
+ //              TRIVEDA<span className="gradient-text ml-1">TECHNOLOGIES</span>
+ //            </span>
+ //          </Link>
+    return (
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/90 backdrop-blur-lg shadow-sm"
+            : "bg-background/60 backdrop-blur-md"
+        } border-b border-border/50`}
+      >
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="https://preview--trivedatech.lovable.app/assets/triveda-logo-BnyGbIwr.jpg"
+                alt="TriVeda Technologies Logo"
+                className="h-12 md:h-14 w-auto object-contain"
+              />
+            </Link>
+  
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
