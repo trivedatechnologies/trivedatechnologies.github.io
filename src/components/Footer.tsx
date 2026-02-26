@@ -24,28 +24,24 @@ const Footer = () => (
           <div className="space-y-2">
             <Link to="/" className="block text-sm text-white/40 hover:text-white transition-colors">Home</Link>
             <Link to="/services" className="block text-sm text-white/40 hover:text-white transition-colors">Services</Link>
-            
             <div className="flex items-center gap-2 text-sm text-white/20 opacity-50 cursor-not-allowed">
               <Linkedin className="w-4 h-4" /> LinkedIn
             </div>
-            
           </div>
         </div>
 
         <div>
           <h4 className="font-display font-semibold text-white mb-4">Contact</h4>
           <div className="space-y-3">
-            <a href="mailto:sales@trivedatechnologies.com" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
-              <Mail className="w-4 h-4" /> sales@trivedatechnologies.com
+            <a href="mailto:info@trivedatechnologies.com" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
+              <Mail className="w-4 h-4" /> info@trivedatechnologies.com
             </a>
-            <a href="mailto:sales@trivedatechnologies.in" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
-              <Mail className="w-4 h-4" /> sales@trivedatechnologies.in
+            <a href="tel:+919973243422" className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors">
+              <Phone className="w-4 h-4" /> +91 9973243422
             </a>
-            <div className="flex items-center gap-2 text-sm text-white/40">
-              <Phone className="w-4 h-4" /> +91 XXXXX XXXXX
-            </div>
             <div className="flex items-start gap-2 text-sm text-white/40">
-              <MapPin className="w-4 h-4 mt-0.5 shrink-0" /> Company address placeholder
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
+              3rd Floor, Plot 1A, Surat Nagar, Phase 1, Gurugram (Haryana) – 122006
             </div>
           </div>
         </div>
